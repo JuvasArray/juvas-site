@@ -1,11 +1,11 @@
-from django.urls import path
+from django.urls import path, re_path
 from posts.views import post_create, post_detail, post_list, post_update, post_delete
 
 
 urlpatterns = [
         path('create', post_create, name='create'),
-        path('detail/<int:id>', post_detail, name='detail'),
-        path('home', post_list, name='list'),
-        path('<int:id>/edit', post_update, name='update'),
-        path('<int:id>/delete', post_delete, name='delete')
+        re_path(r'^(?P<slug>[\w-]+)/$', post_detail, name='detail'),
+        re_path('list', post_list, name='list'),
+        re_path(r'^(?P<slug>[\w-]+)/edit/$', post_update, name='update'),
+        re_path(r'^(?P<slug>[\w-]+)/delete/$', post_delete, name='delete')
         ]
