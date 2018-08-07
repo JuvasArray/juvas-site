@@ -12,10 +12,18 @@
 </head>
 <body>
 
-	<nav class="navbar is-primary">
+	<style>
+.center {
+				display: flex;
+        justify-content: center;
+        align-items: center;
+}
+	</style>
+
+	<nav class="navbar is-info">
 		<div class="container">
 			<div class="navbar-brand">
-				<a class="navbar-item" href="#" style="font-weight:bold;">Juvas ID</a>
+				<a class="navbar-item" href="#" style="font-weight:bold;">JUVAS ID</a>
 				<span class="navbar-burger burger" data-target="navMenu">
 					<span></span>
 					<span></span>
@@ -32,6 +40,16 @@
 			</div>
 		</div>
 	</nav>
+
+	<section class="hero">
+		<div class="hero-body is-fullheight has-background-white">
+			<div class="container">
+				<figure class="image center">
+					<img src="{% static "images/logo2.png" %}" alt="Juvas logo">
+				</figure>
+			</div>
+		</div>
+	</section>
 	{% include 'messages_display.html' %}
 
 	<div class="container">
