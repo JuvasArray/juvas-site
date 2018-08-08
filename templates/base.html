@@ -7,19 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="{% static "css/bulma/css/bulma.min.css" %}">
 	<link rel="stylesheet" href="{% static "css/bulma/css/bulma.css.map" %}">
+	<link rel="stylesheet" href="{% static "css/styles.css" %}">
 
 	<title>{% block head_title %}Juvas Blog {% endblock head_title %}</title>
+
+	{% block head_extra %} {% endblock head_extra %}
 </head>
 <body>
-
-	<style>
-.center {
-				display: flex;
-        justify-content: center;
-        align-items: center;
-}
-	</style>
-
 	<nav class="navbar is-info">
 		<div class="container">
 			<div class="navbar-brand">
@@ -41,15 +35,6 @@
 		</div>
 	</nav>
 
-	<section class="hero">
-		<div class="hero-body is-fullheight has-background-white">
-			<div class="container">
-				<figure class="image center">
-					<img src="{% static "images/logo2.png" %}" alt="Juvas logo">
-				</figure>
-			</div>
-		</div>
-	</section>
 	{% include 'messages_display.html' %}
 
 	<div class="container">
@@ -59,15 +44,5 @@
 	</div>
 
 	<script src="{% static "js/bulma/scripts.js" %}"></script>
-<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
-		fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-	</script>
-
 </body>
 </html>

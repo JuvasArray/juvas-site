@@ -20,9 +20,10 @@
 	 				<div class="notification">
 				
 						<h1 class="is-size-5"><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a> <small>{% if obj.draft %} | Draft{% endif %} | {{ obj.publish }}</small></h1>
-						<p class="is-size-3">{{ obj.content | linebreaks | truncatewords:20 }}</p>
-						<p><a href="{{ obj.get_absolute_url }}" >View</a></p>
-
+						<div class="content">
+							<p class="">{{ obj.get_markdown}}</p>
+							<p><a href="{{ obj.get_absolute_url }}" >View</a></p>
+						</div>
 					</div>
         </div>
       </div>  

@@ -1,0 +1,37 @@
+.center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns:
+	[xl-start] 1fr 1.5rem [md-start] minmax(0, 624px) [md-end] 1.5rem 1fr [xl-end];
+
+
+}
+
+.grid * {
+	grid-column: md;
+
+}
+.grid-xl {
+	grid-column: xl;
+}
+
+.is-paddingless-horizontal {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+@media (max-width: 672px) {
+	:root {
+		font-size: 90%;
+	}
+}
+
+.wmd-panel {
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
