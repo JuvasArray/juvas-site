@@ -1,10 +1,10 @@
+from froala_editor.fields import FroalaEditor
 from django import forms
+
 from posts.models import Post
-from pagedown.widgets import PagedownWidget
 
 class PostForm(forms.ModelForm):
-    content=forms.CharField(widget=PagedownWidget(show_preview=False))
-
+    content = forms.CharField(widget=FroalaEditor(plugins=('font_size', 'font_family')))
     publish = forms.DateField(widget=forms.SelectDateWidget)
     class Meta:
         model = Post

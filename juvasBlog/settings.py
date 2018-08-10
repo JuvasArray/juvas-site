@@ -32,10 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Third party
-    'pagedown',
-    'crispy_forms',
-
+    # third party
+    'froala_editor',
     # Apps
     'posts',
     'comments',
@@ -54,7 +52,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'juvasBlog.urls'
-
+FROALA_EDITOR_PLUGINS = ('align', 'char_counter', 'code_beautifier' ,'code_view', 'colors', 'draggable', 'emoticons',  'entities', 'file', 'font_family', 'font_size', 'fullscreen', 'image_manager', 'image', 'inline_style',   'line_breaker', 'link', 'lists', 'paragraph_format', 'paragraph_style', 'quick_insert', 'quote', 'save', 'table',
+  'url', 'video')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -39,7 +39,7 @@
 						</strong>
 						<a href="#">@user_juvas</a><br>
 						<span class="has-text-grey">{{ instance.title }}<br>
-						<time datetime="{{ instancd.publish }}">{{ instance.publish }}</time> - 5 min read</span>
+						<time datetime="{{ instance.publish }}">{{ instance.publish }}</time> - 5 min read</span>
 					</p>
 				</div>
 			</div>
@@ -52,7 +52,6 @@
 				<h2 class="subtitle is-3"></h2>
 			{% endif %}
 		</div>
-
 
 		<figure class="columns is-mobile is-variable is-0 is-marginless grid-xl">
 			<div class="column">
@@ -74,17 +73,42 @@
 
 
 		<div class="content is-medium notification">
-			<p>{{ instance.get_markdown  }}</p>
+			<p>{{ instance.content  | safe }}</p>
 		</div>
+
 
 	</div>
 </section>
 
+	<div>
+		<form method="POST" action=".">
+			{% csrf_token %}
+			{{ form_content }}
+			<input type="submit" value="comment">
+		</form>
+	</div>
 
-<div>
-	{{ instance.comment_set.all }}
-</div>
 
+
+	<h1 class="title is-2">Comments:</h1>                                                     <blockquote>
+        {% for comment in comments %}
+        <p>{{ comment.content }}</p>
+        <footer>Via: {{ comment.user }} | {{ comment.created | timesince }} ago.</footer>
+
+
+        {% for child_comment in comment.children %}
+        <blockquote>
+        <p>{{ child_comment.content }}</p>                                                        <footer>Via: {{ child_comment.user }} | {{ child_comment.created | timesince }} ag
+o.</footer>
+        </blockquote>
+        {% endfor %}
+
+      <form method="POST" action=".">                                                             {% csrf_token %}
+      {{ form_content }}
+      <input type="hidden" name="parent_id" value="comment.id">
+      <input type="submit" value="reply">                                                     </form>
+    {% endfor %}
+    </blockquote>                                                                       
 
 			<li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">Share on Facebook</a></li>
 		</ul>

@@ -3,52 +3,70 @@
 
 {% block content %}
 
-<h1 class="page-header">{{ title }}</h1>
-<form method="GET"  action="">
-  <input type="text" name="query" placeholder="Search posts">
-  <input type="submit" value="Search">
+
+<section class="section is-paddingless-horizontal">
+  <div class="container grid">
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li><a class="is-active" href="#">Blog's Home</a></li>
+				<li><a href="{{ obj.get_absolute_url }}">Blog's Posts</a></li>
+			</ul>
+		</nav>
+	</div>                                                                                  </section>
+
+
+<form class="field is-grouped has-addons" method="GET"  action="">
+	<input class="control is-expanded is-rounded is-warning" type="text" name="query" placeholder="Find a post">
+	<input class ="control button is-info" type="submit" value="Search">
 </form>
 
+{% for obj in object_list %}
+<div class="card">
+	{% if obj.image %}
+  <div class="card-image">
+    <figure class="image is-4by3">
+			<img src="{{ obj.image }}" alt="">
+    </figure>
+  </div>
+	{% endif %}
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+					<img src="{{ obj.image }}" alt="">
+        </figure>
+      </div>
+      <div class="media-content">
+				<p class="title is-4">{{ obj.title }} {% if obj.draft %} | <span class="tag is-danger">DRAFT</span>{% endif %}</p>
+        <p class="subtitle is-6">@juvasarray</p>
+      </div>
+    </div>
 
-	 <section class="section">
-	 	<div class="container">
-
-			{% for obj in object_list %}
-
-	 		<div class="columns is-multiline">
-	 			<div class="column is-one-third">
-	 				<div class="notification">
-				
-						<h1 class="is-size-5"><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a> <small>{% if obj.draft %} | Draft{% endif %} | {{ obj.publish }}</small></h1>
-						<div class="content">
-							<p class="">{{ obj.get_markdown}}</p>
-							<p><a href="{{ obj.get_absolute_url }}" >View</a></p>
-						</div>
-					</div>
-        </div>
-      </div>  
-
-			{% endfor %}
-
-		</div>
-   </section>
-
-
-<div class="pagination">
-    <span class="step-links">
-        {% if object_list.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-						<a href="?page={{ object_list.previous_page_number }} & {% if request.GET.query %} query={{ request.GET.query }} {% endif %}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
-        </span>
-
-        {% if object_list.has_next %}
-				<a href="?page={{ object_list.next_page_number }} & {% if request.GET.query %}query={{ request.GET.query }} {% endif %}">next</a>
-            <a href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
+    <div class="content">
+      <p>{{ obj | safe}}</p>
+      <p><a href="{{ obj.get_absolute_url }}"  class="button is-info is-inverted">Read more</a></p>
+      <br>
+			<time datetime="{{ obj.publish }}">{{ obj.publish }}</time>
+    </div>
+  </div>
 </div>
+<br>
+
+{% endfor %}
+
+<nav class="pagination" role="navigation" aria-label="pagination">
+	{% if object_list.has_previous %}
+  <a href="?page={{ object_list.previous_page_number }}" & {% if request.GET.query %} query={{ request.GET.query }} {% endif %} class="pagination-previous" title="This is the first page">Previous</a>
+	{% endif %}
+  <ul class="pagination-list">
+		<li>
+      <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">{{ object_list.number }}</a>
+    </li>
+  </ul>
+	{% if object_list.has_next %}
+	<a href="?page={{ object_list.next_page_number }} & {% if request.GET.query %}quer
+	y={{ request.GET.query }} {% endif %}" class="pagination-next">Next page</a>
+  {% endif %}
+</nav>
+
 {% endblock content %}

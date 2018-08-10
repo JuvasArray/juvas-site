@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="title is-2">Comments:</h1>
+        <p>{{ comment.content }}</p>
+        <footer>Via: {{ comment.user }} | {{ comment.created | timesince }} ago.</footer>
+
+
+        {% for child_comment in comment.children %}
+        <blockquote>
+        <p>{{ child_comment.content }}</p>
+        <footer>Via: {{ child_comment.user }} | {{ child_comment.created | timesince }} ag
+o.</footer>
+        </blockquote>                                                                     
+
+				{% endfor %}
+      <form method="POST" action=".">
+        {% csrf_token %}
+      {{ form_content }}
+      <input type="hidden" name="parent_id" value="comment.id">
+      <input type="submit" value="reply">
+    </form>
+
+
+
+{% endblock content %}
