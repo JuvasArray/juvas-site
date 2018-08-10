@@ -17,7 +17,7 @@ o.</footer>
 				{% endfor %}
       <form method="POST" action=".">
         {% csrf_token %}
-      {{ form_content }}
+      {{ form }}
       <input type="hidden" name="parent_id" value="comment.id">
       <input type="submit" value="reply">
     </form>

@@ -93,7 +93,9 @@
 	<h1 class="title is-2">Comments:</h1>                                                     <blockquote>
         {% for comment in comments %}
         <p>{{ comment.content }}</p>
-        <footer>Via: {{ comment.user }} | {{ comment.created | timesince }} ago.</footer>
+        <footer>Via: {{ comment.user }} | {{ comment.created | timesince }} ago.
+					<a href="{{ comment.get_absolute_url }}">Thread</a>
+				</footer>
 
 
         {% for child_comment in comment.children %}
