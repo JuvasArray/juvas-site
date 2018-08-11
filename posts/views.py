@@ -13,7 +13,6 @@ from comments.forms import CommentForm
 from comments.models import Comment
 from posts.models import Post
 from posts.forms import PostForm
-from posts.utils import get_read_time
 
 
 def post_create(request):

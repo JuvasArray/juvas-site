@@ -39,7 +39,7 @@
 						</strong>
 						<a href="#">@user_juvas</a><br>
 						<span class="has-text-grey">{{ instance.title }}<br>
-						<time datetime="{{ instance.publish }}">{{ instance.publish }}</time> - 5 min read</span>
+							<time datetime="{{ instance.publish }}">{{ instance.publish }}</time> - {{ instance.read_time|time:"i" }} min read</span>
 					</p>
 				</div>
 			</div>
